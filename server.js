@@ -1,6 +1,5 @@
 const http = require('http');
 const express = require('express');
-const _ = require('lodash');
 
 const app = express();
 const votes = {};
@@ -20,6 +19,8 @@ var server = http.createServer(app)
 
 const socketIo = require('socket.io');
 const io = socketIo(server);
+
+// TODO: Find another way to write below function using lodash
 
 let countVotes = (votes) => {
   let voteCount = {
@@ -49,9 +50,6 @@ io.on('connection', (socket) => {
       io.emit('voteCount', countVotes(votes));
       console.log(votes);
     }
-    // if (channel === 'userChoice') {
-    //
-    // }
   });
 
   socket.on('disconnect', () => {
@@ -59,7 +57,7 @@ io.on('connection', (socket) => {
     delete votes[socket.id];
     socket.emit('voteCount', countVotes(votes));
     console.log(votes);
-    io.sockets.emit('userConnection', io.engine.clientsCount);
+    io.sockets.emit('usersConnected', io.engine.clientsCount);
   });
 });
 

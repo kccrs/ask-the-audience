@@ -24,7 +24,6 @@ for (let i = 0; i < buttons.length; i++) {
   });
 }
 
-
 socket.on('voteCount', (votes) => {
   liA.innerText = 'Total votes - A: ' + votes.A;
   liB.innerText = 'Total votes - B: ' + votes.B;
