@@ -33,6 +33,6 @@ socket.on('voteCount', function(votes) {
   console.log(votes);
 });
 
-socket.on('userChoice', (userVote) function() {
+socket.on('userChoice', function(userVote) {
   userChoice.innerText = 'You have voted for : ' + userVote;
 });

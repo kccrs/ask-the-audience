@@ -49,9 +49,9 @@ io.on('connection', function (socket) {
       io.emit('voteCount', countVotes(votes));
       console.log(votes);
     }
-    if (channel === 'userChoice') {
-
-    }
+    // if (channel === 'userChoice') {
+    //
+    // }
   });
 
   socket.on('disconnect', function () {
