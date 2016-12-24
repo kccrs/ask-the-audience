@@ -1,47 +1,47 @@
-var http = require('http');
-var express = require('express');
-var _ = require('lodash');
+const http = require('http');
+const express = require('express');
+const _ = require('lodash');
 
-var app = express();
-var votes = {};
+const app = express();
+const votes = {};
 
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 var server = http.createServer(app)
-                 .listen(port, function () {
+                 .listen(port, () => {
                   console.log('Listening on port ' + port + '.');
                 });
 
-var socketIo = require('socket.io');
-var io = socketIo(server);
+const socketIo = require('socket.io');
+const io = socketIo(server);
 
-function countVotes(votes) {
-  var voteCount = {
+let countVotes = (votes) => {
+  let voteCount = {
     A: 0,
     B: 0,
     C: 0,
     D: 0
   };
-  for (var vote in votes) {
+  for (let vote in votes) {
     voteCount[votes[vote]]++;
   }
   return voteCount;
-}
+};
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   console.log('A user has connected.', io.engine.clientsCount);
 
   io.sockets.emit('usersConnected', io.engine.clientsCount);
 
   socket.emit('statusMessage', 'You have connected.');
 
-  socket.on('message', function (channel, message) {
+  socket.on('message', (channel, message) => {
     console.log(channel, message);
     if (channel === 'voteCast') {
       votes[socket.id] = message;
@@ -54,7 +54,7 @@ io.on('connection', function (socket) {
     // }
   });
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     console.log('A user has disconnected', io.engine.clientsCount);
     delete votes[socket.id];
     socket.emit('voteCount', countVotes(votes));
