@@ -1,0 +1,17 @@
+{
+  "name": "ask-the-audience",
+  "version": "1.0.0",
+  "description": "Websocket Workshop",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Casey Cross",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.17.2",
+    "socket.io": "^1.7.2"
+  }
+}
