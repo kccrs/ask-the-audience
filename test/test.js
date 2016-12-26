@@ -1,7 +1,9 @@
 const request = require('supertest');
+const assert = require('chai').assert;
 const app = require('../server');
 const io = require('socket.io-client');
 const socketURL = 'http://localhost:3000';
+const _ = require('lodash');
 
 describe('GET /', () => {
   it('responds with success', (done) =>{
@@ -93,7 +95,7 @@ describe("user connection display", () => {
 
   let checkMessage = (num, client, done) => {
     let message = 'Connected Users: ' + num;
-    client.on('message', (msg) => {
+    client.on('usersConnected', (msg) => {
       message.should.equal(msg);
       client.disconnect();
       done();
@@ -127,6 +129,60 @@ describe("user connection display", () => {
 
     client2.on('disconnect', () => {
       checkMessage(1, client1);
+    });
+  });
+
+});
+
+describe('user voting choice', () => {
+
+  let client1 = io.connect(socketURL, options);
+
+  let voteCount = {
+    A: 0,
+    B: 0,
+    C: 0,
+    D: 0
+  };
+
+  let checkMessage = (choice, done) => {
+    let message = 'You have voted for: ' + choice;
+    client1.on('userChoice', (msg) => {
+      message.should.equal(msg);
+      client1.disconnect();
+      done();
+    });
+  };
+
+  it('should display "You have voted for: A" if user has selected "A"', () => {
+
+    client1.on('connection', () => {
+      let userVote =  _.filter(voteCount, 'A');
+      assert.property(checkMessage(userVote), 'A');
+    });
+  });
+
+  it('should display "You have voted for: B" if user has selected "B"', () => {
+
+    client1.on('connection', () => {
+      let userVote =  _.filter(voteCount, 'B');
+      assert.property(checkMessage(userVote), 'B');
+    });
+  });
+
+  it('should display "You have voted for: C" if user has selected "C"', () => {
+
+    client1.on('connection', () => {
+      let userVote =  _.filter(voteCount, 'C');
+      assert.property(checkMessage(userVote), 'C');
+    });
+  });
+
+  it('should display "You have voted for: D" if user has selected "D"', () => {
+
+    client1.on('connection', () => {
+      let userVote =  _.filter(voteCount, 'D');
+      assert.property(checkMessage(userVote), 'D');
     });
   });
 
