@@ -33,5 +33,5 @@ socket.on('voteCount', (votes) => {
 });
 
 socket.on('userChoice', (userVote) => {
-  userChoice.innerText = 'You have voted for : ' + userVote;
+  userChoice.innerText = 'You have voted for: ' + userVote;
 });

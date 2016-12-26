@@ -4,7 +4,7 @@
   "description": "Websocket Workshop",
   "main": "client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
   "repository": {
@@ -21,5 +21,10 @@
     "express": "^4.14.0",
     "lodash": "^4.17.2",
     "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^2.0.1"
   }
 }
