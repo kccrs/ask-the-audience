@@ -182,7 +182,7 @@ describe('user voting choice', () => {
 
     client1.on('connection', () => {
       let userVote =  _.filter(voteCount, 'D');
-      assert.property(checkMessage(userVote), 'D');
+      assert.property(checkMessage(userVote), 'A');
     });
   });
 
