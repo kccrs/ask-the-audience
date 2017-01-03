@@ -3,30 +3,37 @@
   <head>
     <meta charset="UTF-8">
     <title>Ask the Audience</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="connection-count">
+    <div class="container">
+      <h1>Ask the Audience</h1>
+      <section class="center-section" id="connection-count">
 
-    </div>
-    <div id="status-message">
+      </section>
+      <section class="center-section" id="status-message">
 
-    </div>
-    <div id="choices">
-      <button>A</button>
-      <button>B</button>
-      <button>C</button>
-      <button>D</button>
-    </div>
-    <div>
-      <ul>
-        <li id="A"></li>
-        <li id="B"></li>
-        <li id="C"></li>
-        <li id="D"></li>
-      </ul>
-    </div>
-    <div id="userChoice">
-      
+      </section>
+      <section class="center-section" id="choices">
+        <h3 class="choice-label">Make your choice: </h3>
+        <button>A</button>
+        <button>B</button>
+        <button>C</button>
+        <button>D</button>
+      </section>
+      <section class="center-section">
+        <h3 class="votes">Current votes: </h3>
+        <ul class="display-counts">
+          <li id="A"></li>
+          <li id="B"></li>
+          <li id="C"></li>
+          <li id="D"></li>
+        </ul>
+      </section>
+      <section class="center-section" id="user-choice">
+
+      </section>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/client.js"></script>

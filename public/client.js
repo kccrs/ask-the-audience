@@ -7,7 +7,7 @@ const liA = document.getElementById('A');
 const liB = document.getElementById('B');
 const liC = document.getElementById('C');
 const liD = document.getElementById('D');
-const userChoice = document.getElementById('userChoice');
+const userChoice = document.getElementById('user-choice');
 
 socket.on('usersConnected', (count) => {
   connectionCount.innerText = 'Connected Users: ' + count;
@@ -25,10 +25,10 @@ for (let i = 0; i < buttons.length; i++) {
 }
 
 socket.on('voteCount', (votes) => {
-  liA.innerText = 'Total votes - A: ' + votes.A;
-  liB.innerText = 'Total votes - B: ' + votes.B;
-  liC.innerText = 'Total votes - C: ' + votes.C;
-  liD.innerText = 'Total votes - D: ' + votes.D;
+  liA.innerText = 'Total votes for A:   ' + votes.A;
+  liB.innerText = 'Total votes for B:   ' + votes.B;
+  liC.innerText = 'Total votes for C:   ' + votes.C;
+  liD.innerText = 'Total votes for D:   ' + votes.D;
   console.log(votes);
 });
 
